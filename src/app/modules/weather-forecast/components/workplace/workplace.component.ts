@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkplaceComponent implements OnInit {
 
+  cityName: string = '';
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  getWeatherByCityName (cityName: string) {
+    this.cityName = cityName;
+  };
 
 }
