@@ -1,8 +1,12 @@
-<!-- <p>
-  workplace works!
-</p> -->
-
-<app-city-input (citySelected)="getWeatherByCityName($event)"></app-city-input>
-<div>
-  {{cityName}}
+<div class="input-wrap">
+  <app-city-input (citySelected)="getWeatherByCityName($event)"></app-city-input>
+</div>
+<div *ngIf="curWeather">
+  <h2>Current weather in {{cityName}}</h2>
+  <p>{{curWeather.condMain}}</p>
+  <p>{{curWeather.condDescr}}</p>
+  <p>Temperature {{curWeather.temp}}</p>
+  <p>Humidity {{curWeather.humidity}}</p>
+  <p>Pressure {{curWeather.pressure}}</p>
+  <p>Wind Speed {{curWeather.windSpeed}}</p>
 </div>
