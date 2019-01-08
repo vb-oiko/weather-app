@@ -7,20 +7,20 @@ import { clearModulesForTest } from '@angular/core/src/linker/ng_module_factory_
 
 @Injectable(
   {
-  providedIn: 'root'
-}
+    providedIn: 'root'
+  }
 )
 
 export class WeatherForecastService {
   
-  private _APIURL: string = 'http://api.openweathermap.org/data/2.5/weather?q=';
-  private _APIKEY: string = '&APPID=852632e4d0e2e9f87c1d590ec53e07bc';
-  private _UNITS = '&units=metric';
+  private _APIURL: string = 'http://api.openweathermap.org/data/2.5/weather';
+  private _APIKEY: string = '852632e4d0e2e9f87c1d590ec53e07bc';
+  private _UNITS = 'metric';
 
   constructor(private _http: HttpClient) { }
 
   getCurrentWeather(city: string):Observable<IWeather> {
-    return this._http.get(this._APIURL + city + this._APIKEY + this._UNITS)
+    return this._http.get(this._APIURL+ '?q=' + city + '&APPID=' + this._APIKEY + '&units=' + this._UNITS)
       .pipe(
         map(o => {
           return <IWeather>{

@@ -13,7 +13,6 @@ export class WorkplaceComponent implements OnInit {
   cityName: string = '';
   curWeather: IWeather;
 
-
   constructor( private _wfs: WeatherForecastService) { }
 
   ngOnInit() {
@@ -22,9 +21,13 @@ export class WorkplaceComponent implements OnInit {
   getWeatherByCityName (cityName: string) {
     this.cityName = cityName;
     this._wfs.getCurrentWeather(this.cityName)
-      .subscribe(weather => {
-        this.curWeather = weather;
-      })
+      .subscribe(
+        weather => {this.curWeather = weather;},
+        error => {
+          console.log(error);
+          this.curWeather = undefined;
+        }
+      )
   };
 
 }

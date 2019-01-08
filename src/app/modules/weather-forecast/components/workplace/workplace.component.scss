@@ -1,4 +1,129 @@
 .input-wrap {
-    // width: 70%;
-    margin: 0 auto;
+    flex-basis: 70%;
 }
+
+.weather-icon {
+    width: 256px;
+    height: 256px;
+    background-image: url('/assets/weather-icons.png');
+}
+
+.rain {
+    background-position-x: -256px*2;
+    background-position-y: -256px*3;
+}
+
+.shower.rain, .drizzle {
+    background-position-x: -256px*2;
+    background-position-y: -256px*2;
+}
+
+.heavy.rain, .extreme.rain, .ragged.rain {
+    background-position-x: -256px*1;
+    background-position-y: -256px*3;
+}
+
+.thunderstorm {
+    background-position-x: -256px*3;
+    background-position-y: -256px*0;
+}
+
+.thunderstorm.rain, .thunderstorm.drizzle {
+    background-position-x: -256px*2;
+    background-position-y: -256px*0;
+}
+
+.snow, .freezing.rain, .sleet {
+    background-position-x: -256px*3;
+    background-position-y: -256px*2;
+}
+
+.mist, .smoke, .haze, .sand, .dust.whirls, .fog, .dust, .volcanic.ash {
+    background-position-x: -256px*2;
+    background-position-y: -256px*1;
+}
+
+.squall {
+    background-position-x: -256px*3;
+    background-position-y: -256px*1;
+}
+
+.tornado {
+    background-position-x: -256px*0;
+    background-position-y: -256px*0;
+}
+
+.clear.sky {
+    background-position-x: -256px*1;
+    background-position-y: -256px*2;
+}
+
+.clouds {
+    background-position-x: -256px*0;
+    background-position-y: -256px*2;
+}
+
+.clouds.overcast {
+    background-position-x: -256px*0;
+    background-position-y: -256px*3;
+}
+
+
+
+
+
+
+
+// thunderstorm with rain
+// thunderstorm with heavy rain
+// light thunderstorm
+// thunderstorm
+// heavy thunderstorm
+// ragged thunderstorm
+// thunderstorm with light drizzle
+// thunderstorm with drizzle
+// thunderstorm with heavy drizzle
+// light intensity drizzle
+// drizzle
+// heavy intensity drizzle
+// light intensity drizzle rain
+// drizzle rain
+// heavy intensity drizzle rain
+// shower rain and drizzle
+// heavy shower rain and drizzle
+// shower drizzle
+// light rain
+// moderate rain
+// heavy intensity rain
+// very heavy rain
+// extreme rain
+// freezing rain
+// light intensity shower rain
+// shower rain
+// heavy intensity shower rain
+// ragged shower rain
+// light snow
+// snow
+// heavy snow
+// sleet
+// shower sleet
+// light rain and snow
+// rain and snow
+// light shower snow
+// shower snow
+// heavy shower snow
+// mist
+// smoke
+// haze
+// sand, dust whirls
+// fog
+// sand
+// dust
+// volcanic ash
+// squalls
+// tornado
+// clear sky
+// few clouds
+// scattered clouds
+// broken clouds
+// overcast clouds

@@ -9,4 +9,5 @@
   <p>Humidity {{curWeather.humidity}}</p>
   <p>Pressure {{curWeather.pressure}}</p>
   <p>Wind Speed {{curWeather.windSpeed}}</p>
+  <div [ngClass]="['weather-icon', curWeather.condDescr]"></div>
 </div>
