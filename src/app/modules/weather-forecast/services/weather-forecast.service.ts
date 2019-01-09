@@ -23,8 +23,10 @@ export class WeatherForecastService {
     return this._http.get(this._APIURL+ '?q=' + city + '&APPID=' + this._APIKEY + '&units=' + this._UNITS)
       .pipe(
         map(o => {
+          // console.log(o);
+          
           return <IWeather>{
-            condMain: o['weather'][0]['main'],
+            cityAndCountry: o['name'] + ', ' + o['sys']['country'],
             condDescr: o['weather'][0]['description'],
             temp: o['main']['temp'],
             pressure: o['main']['pressure'],

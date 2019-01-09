@@ -1,13 +1,61 @@
-<div class="input-wrap">
-  <app-city-input (citySelected)="getWeatherByCityName($event)"></app-city-input>
-</div>
-<div *ngIf="curWeather">
-  <h2>Current weather in {{cityName}}</h2>
-  <p>{{curWeather.condMain}}</p>
-  <p>{{curWeather.condDescr}}</p>
-  <p>Temperature {{curWeather.temp}}</p>
-  <p>Humidity {{curWeather.humidity}}</p>
-  <p>Pressure {{curWeather.pressure}}</p>
-  <p>Wind Speed {{curWeather.windSpeed}}</p>
-  <div [ngClass]="['weather-icon', curWeather.condDescr]"></div>
+<div class="main-wrap">
+  <div class="header-wrap">
+    <h1>Another Weather App</h1>
+    <app-city-input (citySelected)="getWeatherByCityName($event)"></app-city-input>
+  </div>
+
+  <div *ngIf="curWeather">
+    <mat-card class="main-card">
+      <div class="left-column">
+        <div class="city-name">{{curWeather.cityAndCountry}}</div>
+        <div class="conditions">{{curWeather.condDescr}}</div>
+        <div class="humidity">Humidity {{curWeather.humidity}} | Pressure {{curWeather.pressure}} hpa | Wind Speed {{curWeather.windSpeed}} m/s</div>
+      </div>
+      <div class="main-icon">
+        <div [ngClass]="['weather-icon', curWeather.condDescr]"></div>
+      </div>
+      <div class="right-column">
+        <div class="date-0">Wed, Jan 9</div>
+        <div class="temperature">{{curWeather.temp|number:'1.0-0'}}&deg;C</div>
+      </div>
+    </mat-card>
+
+    <div class="forecast-wrap">
+      <mat-card class="forecast-card">
+        <div class="day">Thursday</div>
+        <div class="icon">
+          <div class="weather-icon clear sky"></div>
+        </div>
+        <div class="temperature">-10&deg;C</div>
+      </mat-card>
+      <mat-card class="forecast-card">
+        <div class="day">Friday</div>
+        <div class="icon">
+          <div class="weather-icon snow"></div>
+        </div>
+        <div class="temperature">-5&deg;C</div>
+      </mat-card>
+      <mat-card class="forecast-card">
+        <div class="day">Saturday</div>
+        <div class="icon">
+          <div class="weather-icon thunderstorm"></div>
+        </div>
+        <div class="temperature">-8&deg;C</div>
+      </mat-card>
+      <mat-card class="forecast-card">
+        <div class="day">Sanday</div>
+        <div class="icon">
+          <div class="weather-icon clear sky"></div>
+        </div>
+        <div class="temperature">-10&deg;C</div>
+      </mat-card>
+      <mat-card class="forecast-card">
+        <div class="day">Monday</div>
+        <div class="icon">
+          <div class="weather-icon mist"></div>
+        </div>
+        <div class="temperature">0&deg;C</div>
+      </mat-card>
+    </div>
+  </div>
 </div>

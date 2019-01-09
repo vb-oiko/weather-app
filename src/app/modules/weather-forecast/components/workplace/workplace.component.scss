@@ -1,129 +1,161 @@
-.input-wrap {
-    flex-basis: 70%;
+.main-wrap {
+    width: 800px;
+    margin: 0 auto;
+
+    .header-wrap {
+
+        display: flex;
+        justify-content: space-between;
+        margin: 1rem 0;
+
+        h1 {
+            flex-basis: 50%;
+        }
+
+        app-city-input {
+            flex-basis: 45%;
+            align-self: flex-end;
+        }
+    }
+
+    .main-card {
+        display: flex;
+        justify-content: space-between;
+
+        .left-column {
+            flex-basis: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .city-name {
+                font-size: 3rem;
+                padding-bottom: 1rem;
+            }
+            
+            .conditions {
+                font-size: 1.5rem;
+                padding-bottom: 1rem;
+            }
+
+            .humidity {
+                font-size: 0.6rem;
+            }
+        }
+        
+        .main-icon {
+            flex-basis: 20%;
+            margin: 1rem 0;
+
+            div {
+                width: 125px;
+                height: 126px;
+                margin: 0 auto;
+            }
+            
+        }
+        
+        .right-column {
+            flex-basis: 30%;
+            text-align: end;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .date-0 {
+                font-size: 2rem;
+                padding-bottom: .5rem;
+            }
+
+            .temperature {
+                font-size: 4rem;
+            }
+
+        }
+    }
+
+    .forecast-wrap {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+
+        .forecast-card {
+            flex-basis: 14.5%;
+            text-align: center;
+
+            .day {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .icon {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+            }
+
+            .temperature {
+                font-size: 2.8rem;
+                margin-top: 1rem;
+            }
+
+        }
+    }
+
+
+
+    .weather-icon {
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .rain {
+        background-image: url('/assets/icons/11.png');
+    }
+    
+    .shower.rain, .drizzle {
+        background-image: url('/assets/icons/34.png');
+    }
+    
+    .heavy.rain, .extreme.rain, .ragged.rain {
+        background-image: url('/assets/icons/39.png');
+    }
+
+    .thunderstorm {
+        background-image: url('/assets/icons/25.png');
+    }
+
+    .thunderstorm.rain, .thunderstorm.drizzle {
+        background-image: url('/assets/icons/16.png');
+    }
+
+    .snow, .freezing.rain, .sleet {
+        background-image: url('/assets/icons/36.png');
+    }
+    
+    .mist, .smoke, .haze, .sand, .dust.whirls, .fog, .dust, .volcanic.ash {
+        background-image: url('/assets/icons/30.png');
+    }
+    
+    .squall {
+        background-image: url('/assets/icons/31.png');
+    }
+    
+    .tornado {
+        background-image: url('/assets/icons/21.png');
+    }
+    
+    .clear.sky {
+        background-image: url('/assets/icons/33.png');
+    }
+    
+    .clouds {
+        background-image: url('/assets/icons/32.png');
+    }
+    
+    .clouds.overcast {
+        background-image: url('/assets/icons/37.png');
+    }
 }
-
-.weather-icon {
-    width: 256px;
-    height: 256px;
-    background-image: url('/assets/weather-icons.png');
-}
-
-.rain {
-    background-position-x: -256px*2;
-    background-position-y: -256px*3;
-}
-
-.shower.rain, .drizzle {
-    background-position-x: -256px*2;
-    background-position-y: -256px*2;
-}
-
-.heavy.rain, .extreme.rain, .ragged.rain {
-    background-position-x: -256px*1;
-    background-position-y: -256px*3;
-}
-
-.thunderstorm {
-    background-position-x: -256px*3;
-    background-position-y: -256px*0;
-}
-
-.thunderstorm.rain, .thunderstorm.drizzle {
-    background-position-x: -256px*2;
-    background-position-y: -256px*0;
-}
-
-.snow, .freezing.rain, .sleet {
-    background-position-x: -256px*3;
-    background-position-y: -256px*2;
-}
-
-.mist, .smoke, .haze, .sand, .dust.whirls, .fog, .dust, .volcanic.ash {
-    background-position-x: -256px*2;
-    background-position-y: -256px*1;
-}
-
-.squall {
-    background-position-x: -256px*3;
-    background-position-y: -256px*1;
-}
-
-.tornado {
-    background-position-x: -256px*0;
-    background-position-y: -256px*0;
-}
-
-.clear.sky {
-    background-position-x: -256px*1;
-    background-position-y: -256px*2;
-}
-
-.clouds {
-    background-position-x: -256px*0;
-    background-position-y: -256px*2;
-}
-
-.clouds.overcast {
-    background-position-x: -256px*0;
-    background-position-y: -256px*3;
-}
-
-
-
-
-
-
-
-// thunderstorm with rain
-// thunderstorm with heavy rain
-// light thunderstorm
-// thunderstorm
-// heavy thunderstorm
-// ragged thunderstorm
-// thunderstorm with light drizzle
-// thunderstorm with drizzle
-// thunderstorm with heavy drizzle
-// light intensity drizzle
-// drizzle
-// heavy intensity drizzle
-// light intensity drizzle rain
-// drizzle rain
-// heavy intensity drizzle rain
-// shower rain and drizzle
-// heavy shower rain and drizzle
-// shower drizzle
-// light rain
-// moderate rain
-// heavy intensity rain
-// very heavy rain
-// extreme rain
-// freezing rain
-// light intensity shower rain
-// shower rain
-// heavy intensity shower rain
-// ragged shower rain
-// light snow
-// snow
-// heavy snow
-// sleet
-// shower sleet
-// light rain and snow
-// rain and snow
-// light shower snow
-// shower snow
-// heavy shower snow
-// mist
-// smoke
-// haze
-// sand, dust whirls
-// fog
-// sand
-// dust
-// volcanic ash
-// squalls
-// tornado
-// clear sky
-// few clouds
-// scattered clouds
-// broken clouds
-// overcast clouds

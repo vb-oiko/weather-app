@@ -10,7 +10,6 @@ import { WeatherForecastService } from '../../services/weather-forecast.service'
 })
 export class WorkplaceComponent implements OnInit {
 
-  cityName: string = '';
   curWeather: IWeather;
 
   constructor( private _wfs: WeatherForecastService) { }
@@ -19,8 +18,7 @@ export class WorkplaceComponent implements OnInit {
   }
 
   getWeatherByCityName (cityName: string) {
-    this.cityName = cityName;
-    this._wfs.getCurrentWeather(this.cityName)
+    this._wfs.getCurrentWeather(cityName)
       .subscribe(
         weather => {this.curWeather = weather;},
         error => {

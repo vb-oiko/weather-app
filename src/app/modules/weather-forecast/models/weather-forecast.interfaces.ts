@@ -1,5 +1,5 @@
 export interface IWeather {
-    condMain: string;
+    cityAndCountry: string;
     condDescr: string;
     temp: number;
     pressure: number;

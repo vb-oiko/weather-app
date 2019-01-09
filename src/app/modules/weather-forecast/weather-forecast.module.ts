@@ -5,6 +5,7 @@ import { CityInputComponent } from './components/city-input/city-input.component
 import { MatInputModule } from "@angular/material";
 import { MatButtonModule } from "@angular/material/button";
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [WorkplaceComponent, CityInputComponent],
@@ -13,6 +14,7 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    MatCardModule,
   ],
   exports: [WorkplaceComponent],
 })
