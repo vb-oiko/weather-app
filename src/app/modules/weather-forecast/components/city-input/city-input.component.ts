@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Input, Component, OnInit, EventEmitter, Output, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-city-input',
@@ -7,13 +7,22 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class CityInputComponent implements OnInit {
 
-  cityInput: string = 'Kyiv';
+  cityInput: string = '';
+
+  @Input() cityFound: string;
 
   @Output() citySelected = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges() {
+    
+    if (this.cityFound == 'true') {
+      this.cityInput = '';
+    }
   }
 
   selectCity() {

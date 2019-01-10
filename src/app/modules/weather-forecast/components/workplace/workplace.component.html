@@ -1,7 +1,7 @@
 <div class="main-wrap">
   <div class="header-wrap">
     <h1>Another Weather App</h1>
-    <app-city-input (citySelected)="getWeatherByCityName($event)"></app-city-input>
+    <app-city-input cityFound="{{cityFound}}" (citySelected)="getWeatherByCityName($event)"></app-city-input>
   </div>
 
   <div *ngIf="curWeather">

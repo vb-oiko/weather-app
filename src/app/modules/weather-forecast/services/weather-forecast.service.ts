@@ -13,18 +13,16 @@ import { clearModulesForTest } from '@angular/core/src/linker/ng_module_factory_
 
 export class WeatherForecastService {
   
-  private _APIURL: string = 'http://api.openweathermap.org/data/2.5/';
-  private _APIKEY: string = '852632e4d0e2e9f87c1d590ec53e07bc';
-  private _UNITS = 'metric';
+  private _WEATHER_APIURL: string = 'http://api.openweathermap.org/data/2.5/';
+  private _WEATHER_APIKEY: string = '852632e4d0e2e9f87c1d590ec53e07bc';
+  private _WEATHER_UNITS = 'metric';
 
   constructor(private _http: HttpClient) { }
 
   getCurrentWeather(city: string):Observable<IWeather> {
-    return this._http.get(this._APIURL+ 'weather?q=' + city + '&APPID=' + this._APIKEY + '&units=' + this._UNITS)
+    return this._http.get(this._WEATHER_APIURL+ 'weather?q=' + city + '&APPID=' + this._WEATHER_APIKEY + '&units=' + this._WEATHER_UNITS)
       .pipe(
         map(o => {
-          // console.log(o);
-          
           return <IWeather>{
             cityAndCountry: o['name'] + ', ' + o['sys']['country'],
             date: Date.now(),
@@ -40,14 +38,13 @@ export class WeatherForecastService {
   }
 
   getWeatherForecast(city: string): Observable<IWeather[]> {
-    return this._http.get(this._APIURL+ 'forecast?q=' + city + '&APPID=' + this._APIKEY + '&units=' + this._UNITS)
+    return this._http.get(this._WEATHER_APIURL+ 'forecast?q=' + city + '&APPID=' + this._WEATHER_APIKEY + '&units=' + this._WEATHER_UNITS)
     .pipe(map(o => {
       
       let forecast: IWeather[] = [];
       let city: string = o['city']['name'] + ', ' + o['city']['country'];
       
       for(let i=0;i<o['list'].length;i++) {
-      // for(let i=0;i<5;i++) {
         forecast.push(<IWeather>{
           cityAndCountry: city,
           date: o['list'][i]['dt'] * 1000,
@@ -63,7 +60,5 @@ export class WeatherForecastService {
 
     })) as Observable<IWeather[]>;
   }
-
-
 }
 
