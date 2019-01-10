@@ -15,47 +15,21 @@
         <div [ngClass]="['weather-icon', curWeather.condDescr]"></div>
       </div>
       <div class="right-column">
-        <div class="date-0">Wed, Jan 9</div>
-        <div class="temperature">{{curWeather.temp|number:'1.0-0'}}&deg;C</div>
+        <div class="date-0">{{curWeather.date | date:'EEE, MMM d' }}</div>
+        <div class="temperature">{{curWeather.temp | number:'1.0-0'}}&deg;C</div>
       </div>
     </mat-card>
 
-    <div class="forecast-wrap">
-      <mat-card class="forecast-card">
-        <div class="day">Thursday</div>
-        <div class="icon">
-          <div class="weather-icon clear sky"></div>
-        </div>
-        <div class="temperature">-10&deg;C</div>
-      </mat-card>
-      <mat-card class="forecast-card">
-        <div class="day">Friday</div>
-        <div class="icon">
-          <div class="weather-icon snow"></div>
-        </div>
-        <div class="temperature">-5&deg;C</div>
-      </mat-card>
-      <mat-card class="forecast-card">
-        <div class="day">Saturday</div>
-        <div class="icon">
-          <div class="weather-icon thunderstorm"></div>
-        </div>
-        <div class="temperature">-8&deg;C</div>
-      </mat-card>
-      <mat-card class="forecast-card">
-        <div class="day">Sanday</div>
-        <div class="icon">
-          <div class="weather-icon clear sky"></div>
-        </div>
-        <div class="temperature">-10&deg;C</div>
-      </mat-card>
-      <mat-card class="forecast-card">
-        <div class="day">Monday</div>
-        <div class="icon">
-          <div class="weather-icon mist"></div>
-        </div>
-        <div class="temperature">0&deg;C</div>
-      </mat-card>
+    <div class="forecast-wrap" *ngIf="forecast">
+      <ng-container *ngFor="let fore of forecast">
+        <mat-card class="forecast-card" *ngIf="!(fore.date % 86400000 - 43200000)">
+          <div class="day">{{fore.date | date :'EEE H:mm'}}</div>
+          <div class="icon">
+            <div [ngClass]="['weather-icon', fore.condDescr]"></div>
+          </div>
+          <div class="temperature">{{fore.temp | number: '1.0-0'}}&deg;C</div>
+        </mat-card>
+      </ng-container>
     </div>
   </div>
 </div>
