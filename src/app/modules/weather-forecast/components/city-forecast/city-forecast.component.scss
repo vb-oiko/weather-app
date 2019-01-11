@@ -1,0 +1,27 @@
+.forecast-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    .forecast-card {
+        flex-basis: 14.5%;
+        text-align: center;
+
+        .day {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+
+        .temperature {
+            font-size: 2.8rem;
+            margin-top: 1rem;
+        }
+
+    }
+}

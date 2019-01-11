@@ -1,0 +1,59 @@
+//   .icon-wrap {
+
+//     margin: 0 auto;
+  
+    .weather-icon {
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .rain {
+        background-image: url('/assets/icons/11.png');
+    }
+
+    .shower.rain, .drizzle {
+        background-image: url('/assets/icons/34.png');
+    }
+
+    .heavy.rain, .extreme.rain, .ragged.rain {
+        background-image: url('/assets/icons/39.png');
+    }
+
+    .thunderstorm {
+        background-image: url('/assets/icons/25.png');
+    }
+
+    .thunderstorm.rain, .thunderstorm.drizzle {
+        background-image: url('/assets/icons/16.png');
+    }
+
+    .snow, .freezing.rain, .sleet {
+        background-image: url('/assets/icons/36.png');
+    }
+
+    .mist, .smoke, .haze, .sand, .dust.whirls, .fog, .dust, .volcanic.ash, .haze {
+        background-image: url('/assets/icons/30.png');
+    }
+
+    .squall {
+        background-image: url('/assets/icons/31.png');
+    }
+
+    .tornado {
+        background-image: url('/assets/icons/21.png');
+    }
+
+    .clear.sky {
+        background-image: url('/assets/icons/33.png');
+    }
+
+    .clouds {
+        background-image: url('/assets/icons/32.png');
+    }
+
+    .clouds.overcast {
+        background-image: url('/assets/icons/37.png');
+    }
+//   }

@@ -19,8 +19,7 @@ export class CityInputComponent implements OnInit {
   }
 
   ngOnChanges() {
-    
-    if (this.cityFound == 'true') {
+    if (this.cityFound) {
       this.cityInput = '';
     }
   }

@@ -6,9 +6,12 @@ import { MatInputModule } from "@angular/material";
 import { MatButtonModule } from "@angular/material/button";
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { CityWeatherComponent } from './components/city-weather/city-weather.component';
+import { CityForecastComponent } from './components/city-forecast/city-forecast.component';
+import { WeatherIconComponent } from './components/weather-icon/weather-icon.component';
 
 @NgModule({
-  declarations: [WorkplaceComponent, CityInputComponent],
+  declarations: [WorkplaceComponent, CityInputComponent, CityWeatherComponent, CityForecastComponent, WeatherIconComponent],
   imports: [
     CommonModule,
     MatInputModule,
