@@ -3,6 +3,7 @@ import { IWeather } from '../../models/weather-forecast.interfaces';
 import { WeatherForecastService } from '../../services/weather-forecast.service';
 import { ModuleStateService } from '../../services/module-state.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-starred-cities',
@@ -19,6 +20,7 @@ export class StarredCitiesComponent implements OnInit {
   constructor( 
     private _wfs:WeatherForecastService,
     private _mss: ModuleStateService,
+    private router: Router,
   ) {
     this.subscription = this._mss.getState().subscribe(curState => {
       this.starredCities =  curState.starredCities;
@@ -35,6 +37,10 @@ export class StarredCitiesComponent implements OnInit {
 
   cityStarClick(city: string) {
     this._mss.toggleCity(city);
+  }
+
+  cityClicked(city: string) {
+    this.router.navigate(["home/city", city]);
   }
 
   getWeather(){

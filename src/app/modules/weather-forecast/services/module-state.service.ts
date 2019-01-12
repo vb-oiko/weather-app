@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IState } from '../models/weather-forecast.interfaces';
-import { Subject, Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +8,17 @@ import { Subject, Observable } from 'rxjs';
 
 export class ModuleStateService {
 
-  constructor() { }
+  constructor () {}
 
   private _curState:IState = {
-    curCity: '',
     starredCities: [
       'Kyiv, UA',
       'London, GB'
     ],
-    cityFound: false,
   };
   
-  private state = new Subject<IState>();
-  
+  private state = new BehaviorSubject<IState>(this._curState);
+
   toggleCity(city: string) {
     let i = this._curState.starredCities.indexOf(city);
     if (i !== -1) {
@@ -31,20 +29,8 @@ export class ModuleStateService {
     this.state.next(this._curState);
   };
   
-  searchCity(city: string) {
-    this._curState.curCity = city;
-    this._curState.cityFound = false;
-    this.state.next(this._curState);
-  };
-  
   getState(): Observable<IState> {
     return this.state.asObservable();
   }
   
-  setCityAsFound(city:string) {
-    this._curState.curCity = city;
-    this._curState.cityFound = true;
-    this.state.next(this._curState);
-  }
-
 }

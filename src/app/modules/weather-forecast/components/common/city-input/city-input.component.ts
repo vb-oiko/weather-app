@@ -1,36 +1,37 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { ModuleStateService } from '../../../services/module-state.service';
+import { Component, OnInit, Directive } from '@angular/core';
+import { WeatherForecastService } from '../../../services/weather-forecast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-city-input',
   templateUrl: './city-input.component.html',
   styleUrls: ['./city-input.component.scss']
 })
+
 export class CityInputComponent implements OnInit {
 
   cityInput: string = '';
-  subscription: Subscription;
 
   constructor(
-    private _mss: ModuleStateService,
+    private _wfs: WeatherForecastService,
+    private router: Router,
   ) { 
-    this.subscription = this._mss.getState().subscribe(curState => {
-      if (curState.cityFound) {
-        this.cityInput = '';
-      }
-    });
   }
 
   ngOnInit() {
   }
 
-  OnDestroy(){
-    this.subscription.unsubscribe();
-  }
-
   selectCity() {
-    this._mss.searchCity(this.cityInput);
+    this._wfs.getCurrentWeather(this.cityInput).subscribe(
+      weather => {
+        this.cityInput = '';
+        this.router.navigate(['home/city', weather.cityAndCountry]);
+      },
+      error => {
+        console.log('City: ', this.cityInput, ' not found!');
+        
+      },
+    )
   };
 
 }

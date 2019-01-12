@@ -1,6 +1,13 @@
-<div class="input-wrap">
+<form class="input-wrap">
   <mat-form-field>
-    <input matInput placeholder="Enter city name..." [(ngModel)]="cityInput" (keyup.enter)="selectCity()">
+    <input 
+      matInput 
+      name="city"
+      placeholder="Enter city name..." 
+      [(ngModel)]="cityInput" 
+      (keyup.enter)="selectCity()"
+    >
+    <mat-error>City not found!</mat-error>
   </mat-form-field>
-  <button mat-flat-button color="primary" (click)="selectCity()">Search</button>
-</div>
+  <button mat-flat-button color="primary" cityValidator (click)="selectCity()">Search</button>
+</form>

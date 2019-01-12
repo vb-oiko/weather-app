@@ -1,12 +1,9 @@
 <div class="main-wrap">
   <div class="header-wrap">
-    <h1>Another Weather App</h1>
+    <h1><a [routerLink]="['']">Another Weather App</a></h1>
     <app-city-input></app-city-input>
+    <a [routerLink]="['./starred']">Profile</a> 
   </div>
 
-  <app-city-view></app-city-view>
-  
-  <div style="padding-bottom: 1rem;"></div>
-  
-  <app-starred-cities></app-starred-cities>
+  <router-outlet></router-outlet>
 </div>

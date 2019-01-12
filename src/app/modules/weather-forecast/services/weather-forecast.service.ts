@@ -19,6 +19,7 @@ export class WeatherForecastService {
   constructor(private _http: HttpClient) { }
 
   getCurrentWeather(city: string):Observable<IWeather> {
+    
     return this._http.get(this._WEATHER_APIURL+ 'weather?q=' + city + '&APPID=' + this._WEATHER_APIKEY + '&units=' + this._WEATHER_UNITS)
       .pipe(
         map(o => {
@@ -37,6 +38,7 @@ export class WeatherForecastService {
   }
 
   getWeatherForecast(city: string): Observable<IWeather[]> {
+
     return this._http.get(this._WEATHER_APIURL+ 'forecast?q=' + city + '&APPID=' + this._WEATHER_APIKEY + '&units=' + this._WEATHER_UNITS)
     .pipe(map(o => {
       

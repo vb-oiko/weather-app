@@ -9,7 +9,5 @@ export interface IWeather {
 }
 
 export interface IState {
-    curCity: string;
     starredCities: string[];
-    cityFound: boolean;
 }

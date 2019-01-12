@@ -1,5 +1,5 @@
 <div *ngIf="weather">
-  <div *ngFor="let wth of weather">
+  <div *ngFor="let wth of weather" (click)="cityClicked(wth.cityAndCountry)">
       <app-city-weather 
         [curWeather]="wth" 
         [starred]="true" 

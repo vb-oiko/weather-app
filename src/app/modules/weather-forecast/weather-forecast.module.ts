@@ -11,6 +11,8 @@ import { CityForecastComponent } from './components/common/city-forecast/city-fo
 import { WeatherIconComponent } from './components/common/weather-icon/weather-icon.component';
 import { StarredCitiesComponent } from './components/starred-cities/starred-cities.component';
 import { CityViewComponent } from './components/city-view/city-view.component';
+import { RouterModule } from '@angular/router';
+import { GeoLocatorComponent } from './components/geo-locator/geo-locator.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +22,17 @@ import { CityViewComponent } from './components/city-view/city-view.component';
     CityForecastComponent, 
     WeatherIconComponent, 
     StarredCitiesComponent, 
-    CityViewComponent
+    CityViewComponent, 
+    GeoLocatorComponent,
   ],
+
   imports: [
     CommonModule,
     MatInputModule,
     MatButtonModule,
     FormsModule,
     MatCardModule,
+    RouterModule,
   ],
   exports: [WorkplaceComponent],
 })

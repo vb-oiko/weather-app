@@ -3,6 +3,7 @@ import { IWeather } from '../../models/weather-forecast.interfaces';
 import { WeatherForecastService } from '../../services/weather-forecast.service';
 import { ModuleStateService } from '../../services/module-state.service';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-city-view',
@@ -15,17 +16,20 @@ export class CityViewComponent implements OnInit {
   forecast: IWeather[];
   subscription: Subscription;
   starred: boolean;
+  city: string;
 
   constructor(
     private _wfs: WeatherForecastService,
     private _mss: ModuleStateService,
+    private route: ActivatedRoute,
   ) { 
+    this.route.params.subscribe( params => {
+      this.city = params.name;
+      this.getWeatherByCityName(params.name);
+    });
+
     this.subscription = this._mss.getState().subscribe ( curState => {
-      if (!curState.cityFound) {
-        this.getWeatherByCityName(curState.curCity);
-      } else {
-        this.starred = curState.starredCities.includes(curState.curCity);
-      };
+        this.starred = curState.starredCities.includes(this.city);
     });
   }
 
@@ -45,7 +49,6 @@ export class CityViewComponent implements OnInit {
     this._wfs.getCurrentWeather(cityName).subscribe(
       weather => {
         this.curWeather = weather;
-        this._mss.setCityAsFound( this.curWeather.cityAndCountry);
       },
       error => {
         console.log(error);
