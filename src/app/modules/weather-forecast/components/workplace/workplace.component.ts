@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { IWeather } from '../../models/weather-forecast.interfaces';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { IWeather, IState } from '../../models/weather-forecast.interfaces';
 import { WeatherForecastService } from '../../services/weather-forecast.service';
 import { NgZone } from '@angular/core';
+import { ModuleStateService } from '../../services/module-state.service';
+import { Subscription } from 'rxjs';
 declare const google: any;
 
 @Component({
@@ -10,45 +12,36 @@ declare const google: any;
   styleUrls: ['./workplace.component.scss'],
   providers: [WeatherForecastService]
 })
-export class WorkplaceComponent implements OnInit {
+export class WorkplaceComponent implements OnInit, OnDestroy {
 
-  curWeather: IWeather;
-  forecast: IWeather[];
+  subscription: Subscription;
+  curCity: string;
   cityFound: boolean = false;
+  starredCities: string[];
 
   constructor( 
     private _wfs: WeatherForecastService,
+    private _mss: ModuleStateService,
     private _ngzone: NgZone
-  ) { }
+  ) {
+    this.subscription = _mss.getState().subscribe(curState => {
+      this.curCity = curState.curCity;
+      this.starredCities = curState.starredCities;
+    })
+  }
 
   ngOnInit() {
     this.getCityByGeoPosition();
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  isStarred():boolean {
+    return this.starredCities.includes(this.curCity);
+  }
   
-  getWeatherByCityName (cityName: string) {
-    this.cityFound = false;
-
-    this._wfs.getCurrentWeather(cityName).subscribe(
-      weather => {
-        this.curWeather = weather;
-        this.cityFound = true;
-      },
-      error => {
-        console.log(error);
-        this.curWeather = undefined;
-      }
-    );
-
-    this._wfs.getWeatherForecast(cityName).subscribe(
-      forecast => this.forecast = forecast,
-      error => {
-        console.log(error);
-        this.forecast = undefined;
-      }
-    );
-  };
-
-
   getCityByGeoPosition() {
 
     if (navigator.geolocation) {
@@ -75,13 +68,15 @@ export class WorkplaceComponent implements OnInit {
               }
 
               self._ngzone.run(()=>{
-                self.getWeatherByCityName(city + ', ' + country);
+                self._mss.searchCity(city + ', ' + country);
               });
             };
-
+            
+          });
+          
         });
-
-      });
+    } else {
+      this._mss.searchCity('Kyiv, UA');
     };
   };
 }

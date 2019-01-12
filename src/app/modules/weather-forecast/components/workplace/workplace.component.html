@@ -1,14 +1,12 @@
 <div class="main-wrap">
   <div class="header-wrap">
     <h1>Another Weather App</h1>
-    <app-city-input [cityFound]="cityFound" (citySelected)="getWeatherByCityName($event)"></app-city-input>
+    <app-city-input></app-city-input>
   </div>
 
-  <div *ngIf="curWeather">
-    <app-city-weather [curWeather]="curWeather"></app-city-weather>
-  </div>
-
-  <div *ngIf="forecast">
-    <app-city-forecast [forecast]="forecast"></app-city-forecast>
-  </div>
+  <app-city-view></app-city-view>
+  
+  <div style="padding-bottom: 1rem;"></div>
+  
+  <app-starred-cities></app-starred-cities>
 </div>

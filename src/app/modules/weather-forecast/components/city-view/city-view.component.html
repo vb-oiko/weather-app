@@ -1,0 +1,12 @@
+<!-- <div *ngIf="city"> -->
+  <app-city-weather 
+    *ngIf="curWeather"
+    [curWeather]="curWeather" 
+    [starred]="starred" 
+    [display]="''"
+    (starClicked)="cityClick($event)">
+  </app-city-weather>
+  <div *ngIf="forecast">
+    <app-city-forecast [forecast]="forecast"></app-city-forecast>
+  </div>
+<!-- </div> -->

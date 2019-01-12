@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IWeather } from '../models/weather-forecast.interfaces';
 import { map } from "rxjs/operators";
-import { clearModulesForTest } from '@angular/core/src/linker/ng_module_factory_loader';
 
 @Injectable(
   {

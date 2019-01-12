@@ -7,3 +7,9 @@ export interface IWeather {
     humidity: number;
     windSpeed: number;
 }
+
+export interface IState {
+    curCity: string;
+    starredCities: string[];
+    cityFound: boolean;
+}

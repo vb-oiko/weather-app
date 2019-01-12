@@ -1,0 +1,92 @@
+.main-card {
+    display: flex;
+    justify-content: space-between;
+
+    .left-column {
+        flex-basis: 45%;
+        display: flex;
+        flex-wrap: wrap;
+
+        .city-name {
+            font-size: 3rem;
+            align-self: center;
+        }
+
+        .starred-icon {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            align-self: center;
+            cursor: pointer;
+        }
+        
+        .true {
+            background-image: url('/assets/icons/starred.svg');
+        }
+        
+        .false {
+            background-image: url('/assets/icons/notstarred.svg');
+        }
+        
+        .conditions {
+            font-size: 1.5rem;
+            flex-basis: 100%;
+            align-self: center;
+        }
+        
+        .conditions.short {
+            flex-basis: initial;
+            margin-left: auto;
+        }
+        
+        .humidity {
+            font-size: 0.6rem;
+            flex-basis: 100%;
+        }
+
+        .humidity.short {
+            display: none;
+        }
+    }
+
+    .left-column.short {
+        flex-basis: 75%
+    }
+    
+    .main-icon {
+        flex-basis: 20%;
+    }
+    
+    .main-icon.short {
+        flex-basis: 10%;
+    }
+
+    .right-column {
+        flex-basis: 30%;
+        text-align: end;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .date {
+            font-size: 2rem;
+            padding-bottom: .5rem;
+        }
+
+        .date.short {
+            display: none;
+        }
+
+        .temperature {
+            font-size: 4rem;
+        }
+
+        .temperature.short {
+            font-size: 3rem;
+        }
+    }
+
+    .right-column {
+        flex-basis: 15%;
+    }
+}

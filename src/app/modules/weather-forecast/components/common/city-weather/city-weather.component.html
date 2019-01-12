@@ -1,0 +1,15 @@
+<mat-card class="main-card">
+  <div class="left-column" [ngClass]="display">
+    <div class="city-name" [ngClass]="display">{{curWeather.cityAndCountry}}</div>
+    <div class="starred-icon" [ngClass]="[starred.toString(), display]" (click)="starClick()"></div>
+    <div class="conditions" [ngClass]="display">{{curWeather.condDescr}}</div>
+    <div class="humidity" [ngClass]="display">Humidity {{curWeather.humidity}} | Pressure {{curWeather.pressure}} hpa | Wind Speed {{curWeather.windSpeed}} m/s</div>
+  </div>
+  <div class="main-icon">
+    <app-weather-icon [descr]="curWeather.condDescr" [ngClass]="display"></app-weather-icon>
+  </div>
+  <div class="right-column" [ngClass]="display">
+    <div class="date" [ngClass]="display">{{curWeather.date | date:'EEE, MMM d' }}</div>
+    <div class="temperature" [ngClass]="display">{{curWeather.temp | number:'1.0-0'}}&deg;C</div>
+  </div>
+</mat-card>

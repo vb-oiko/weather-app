@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IWeather } from '../../models/weather-forecast.interfaces';
+import { IWeather } from '../../../models/weather-forecast.interfaces';
 
 @Component({
   selector: 'app-city-forecast',
