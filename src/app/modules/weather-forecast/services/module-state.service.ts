@@ -28,14 +28,12 @@ export class ModuleStateService {
     } else {
       this._curState.starredCities.push(city);
     };
-    console.log(this._curState);
     this.state.next(this._curState);
   };
   
   searchCity(city: string) {
     this._curState.curCity = city;
     this._curState.cityFound = false;
-    console.log(this._curState);
     this.state.next(this._curState);
   };
   
@@ -46,7 +44,6 @@ export class ModuleStateService {
   setCityAsFound(city:string) {
     this._curState.curCity = city;
     this._curState.cityFound = true;
-    console.log(this._curState);
     this.state.next(this._curState);
   }
 

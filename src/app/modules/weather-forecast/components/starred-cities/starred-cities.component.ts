@@ -33,7 +33,7 @@ export class StarredCitiesComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  cityClick(city: string) {
+  cityStarClick(city: string) {
     this._mss.toggleCity(city);
   }
 

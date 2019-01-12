@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IWeather, IState } from '../../models/weather-forecast.interfaces';
 import { WeatherForecastService } from '../../services/weather-forecast.service';
 import { NgZone } from '@angular/core';
 import { ModuleStateService } from '../../services/module-state.service';
@@ -16,7 +15,6 @@ export class WorkplaceComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
   curCity: string;
-  cityFound: boolean = false;
   starredCities: string[];
 
   constructor( 
@@ -38,10 +36,6 @@ export class WorkplaceComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  isStarred():boolean {
-    return this.starredCities.includes(this.curCity);
-  }
-  
   getCityByGeoPosition() {
 
     if (navigator.geolocation) {
