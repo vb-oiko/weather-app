@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy} from '@angular/core';
 import { IWeather } from '../../models/weather-forecast.interfaces';
 import { WeatherForecastService } from '../../services/weather-forecast.service';
 import { ModuleStateService } from '../../services/module-state.service';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,29 +13,20 @@ import { Router } from '@angular/router';
 export class StarredCitiesComponent implements OnInit {
   
   weather: IWeather[] = [];
-  subscription: Subscription;
-  starredCities: string[];
 
   constructor( 
     private _wfs:WeatherForecastService,
     private _mss: ModuleStateService,
     private router: Router,
-  ) {
-    this.subscription = this._mss.getState().subscribe(curState => {
-      this.starredCities =  curState.starredCities;
-      this.getWeather();
-    });
-  }
+  ) { }
 
   ngOnInit() {
+    this.getWeather();
   }
   
-  OnDestroy(){
-    this.subscription.unsubscribe();
-  }
-
   cityStarClick(city: string) {
     this._mss.toggleCity(city);
+    this.getWeather();
   }
 
   cityClicked(city: string) {
@@ -45,10 +35,10 @@ export class StarredCitiesComponent implements OnInit {
 
   getWeather(){
     this.weather = [];
-    for (let i = 0; i < this.starredCities.length; i++) {
-      this._wfs.getCurrentWeather(this.starredCities[i]).subscribe(
+    for (let i = 0; i < this._mss.starredCities.length; i++) {
+      this._wfs.getCurrentWeather(this._mss.starredCities[i]).subscribe(
         wth => {this.weather.push(wth)},
-        error => {console.log('Fail to load the weather in ', this.starredCities[i], error)
+        error => {console.log('Fail to load the weather in ', this._mss.starredCities[i], error)
         }
       );
       

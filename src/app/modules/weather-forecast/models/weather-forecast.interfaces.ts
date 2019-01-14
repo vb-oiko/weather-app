@@ -7,7 +7,3 @@ export interface IWeather {
     humidity: number;
     windSpeed: number;
 }
-
-export interface IState {
-    starredCities: string[];
-}

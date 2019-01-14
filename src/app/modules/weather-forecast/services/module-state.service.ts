@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IState } from '../models/weather-forecast.interfaces';
-import { Observable, BehaviorSubject } from 'rxjs';
 import {LocalStorageService} from 'ngx-webstorage';
+import { AngularFireAuth } from "@angular/fire/auth";
 
 @Injectable({
   providedIn: 'root'
@@ -9,39 +8,28 @@ import {LocalStorageService} from 'ngx-webstorage';
 
 export class ModuleStateService {
 
-  private curState:IState = { starredCities: []};
-  private state: BehaviorSubject<IState>;
+  starredCities: string[] = [];
 
   constructor (
     private storage:LocalStorageService,
   ) {
 
     if (this.storage.retrieve('storedCities')) {
-      this.curState.starredCities = this.storage.retrieve('storedCities');
+      this.starredCities = this.storage.retrieve('storedCities');
     };
-
-    this.state = new BehaviorSubject<IState>(this.curState);
   }
 
 
   toggleCity(city: string) {
 
-    console.log(city);
-    console.log( this.curState);
-    
-    let i = this.curState.starredCities.indexOf(city);
+    let i = this.starredCities.indexOf(city);
     if (i !== -1) {
-      this.curState.starredCities.splice(i, 1);
+      this.starredCities.splice(i, 1);
     } else {
-      this.curState.starredCities.push(city);
+      this.starredCities.push(city);
     };
 
-    this.storage.store('storedCities', this.curState.starredCities)
-    this.state.next(this.curState);
+    this.storage.store('storedCities', this.starredCities)
   };
-  
-  getState(): Observable<IState> {
-    return this.state.asObservable();
-  }
   
 }
