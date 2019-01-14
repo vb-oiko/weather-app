@@ -28,8 +28,7 @@ export class CityInputComponent implements OnInit {
         this.router.navigate(['home/city', weather.cityAndCountry]);
       },
       error => {
-        console.log('City: ', this.cityInput, ' not found!');
-        
+        // console.log('City: ', this.cityInput, ' not found!');
       },
     )
   };

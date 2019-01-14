@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IState } from '../models/weather-forecast.interfaces';
 import { Observable, BehaviorSubject } from 'rxjs';
+import {LocalStorageService} from 'ngx-webstorage';
 
 @Injectable({
   providedIn: 'root'
@@ -8,25 +9,35 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 export class ModuleStateService {
 
-  constructor () {}
+  private curState:IState = { starredCities: []};
+  private state: BehaviorSubject<IState>;
 
-  private _curState:IState = {
-    starredCities: [
-      'Kyiv, UA',
-      'London, GB'
-    ],
-  };
-  
-  private state = new BehaviorSubject<IState>(this._curState);
+  constructor (
+    private storage:LocalStorageService,
+  ) {
+
+    if (this.storage.retrieve('storedCities')) {
+      this.curState.starredCities = this.storage.retrieve('storedCities');
+    };
+
+    this.state = new BehaviorSubject<IState>(this.curState);
+  }
+
 
   toggleCity(city: string) {
-    let i = this._curState.starredCities.indexOf(city);
+
+    console.log(city);
+    console.log( this.curState);
+    
+    let i = this.curState.starredCities.indexOf(city);
     if (i !== -1) {
-      this._curState.starredCities.splice(i, 1);
+      this.curState.starredCities.splice(i, 1);
     } else {
-      this._curState.starredCities.push(city);
+      this.curState.starredCities.push(city);
     };
-    this.state.next(this._curState);
+
+    this.storage.store('storedCities', this.curState.starredCities)
+    this.state.next(this.curState);
   };
   
   getState(): Observable<IState> {

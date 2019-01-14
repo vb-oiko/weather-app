@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IWeather } from '../../models/weather-forecast.interfaces';
+import { IWeather, IState } from '../../models/weather-forecast.interfaces';
 import { WeatherForecastService } from '../../services/weather-forecast.service';
 import { ModuleStateService } from '../../services/module-state.service';
 import { Subscription } from 'rxjs';
@@ -17,6 +17,7 @@ export class CityViewComponent implements OnInit {
   subscription: Subscription;
   starred: boolean;
   city: string;
+  curState: IState;
 
   constructor(
     private _wfs: WeatherForecastService,
@@ -28,8 +29,9 @@ export class CityViewComponent implements OnInit {
       this.getWeatherByCityName(params.name);
     });
 
-    this.subscription = this._mss.getState().subscribe ( curState => {
-        this.starred = curState.starredCities.includes(this.city);
+    this.subscription = this._mss.getState().subscribe ( state => {
+        this.curState = state;
+        this.starred = this.curState.starredCities.includes(this.city);
     });
   }
 
@@ -49,6 +51,8 @@ export class CityViewComponent implements OnInit {
     this._wfs.getCurrentWeather(cityName).subscribe(
       weather => {
         this.curWeather = weather;
+        this.starred = this.curState.starredCities.includes(this.city);
+
       },
       error => {
         console.log(error);
