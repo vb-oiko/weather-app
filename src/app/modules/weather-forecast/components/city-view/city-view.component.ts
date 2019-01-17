@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IWeather } from '../../models/weather-forecast.interfaces';
 import { WeatherForecastService } from '../../services/weather-forecast.service';
 import { ModuleStateService } from '../../services/module-state.service';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-city-view',
@@ -13,35 +14,43 @@ export class CityViewComponent implements OnInit {
 
   curWeather: IWeather;
   forecast: IWeather[];
-  starred: boolean;
+  starred: string;
   city: string;
+  subscr: Subscription;
 
   constructor(
     private _wfs: WeatherForecastService,
-    private _mss: ModuleStateService,
+    public _mss: ModuleStateService,
     private route: ActivatedRoute,
   ) { 
+
     this.route.params.subscribe( params => {
       this.city = params.name;
       this.getWeatherByCityName(params.name);
+    });
+
+    this.subscr = this._mss.starredCities.subscribe(cities => {
+      this.starred = cities.includes(this.city).toString();
     });
   }
 
   ngOnInit() {
   }
 
-  cityClick() {
-    this._mss.toggleCity(this.curWeather.cityAndCountry);
-    this.starred = this._mss.starredCities.includes(this.city);
+  ngOnDestroy() {
+    this.subscr.unsubscribe();
   }
 
+  cityClick() {
+    this._mss.toggleCity(this.curWeather.cityAndCountry);
+  }
+  
   getWeatherByCityName (cityName: string) {
-
+    
     this._wfs.getCurrentWeather(cityName).subscribe(
       weather => {
         this.curWeather = weather;
-        this.starred = this._mss.starredCities.includes(this.city);
-
+        this.starred = this._mss.isStarred(this.curWeather.cityAndCountry);
       },
       error => {
         console.log(error);

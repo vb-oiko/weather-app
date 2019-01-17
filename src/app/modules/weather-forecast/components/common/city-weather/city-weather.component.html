@@ -1,7 +1,7 @@
 <mat-card class="main-card">
   <div class="left-column" [ngClass]="display">
     <div class="city-name" [ngClass]="display">{{curWeather.cityAndCountry}}</div>
-    <div class="starred-icon" [ngClass]="[starred.toString(), display]" (click)="starClick()"></div>
+    <div class="starred-icon" [ngClass]="[starred, display]" (click)="starClick()"></div>
     <div class="conditions" [ngClass]="display">{{curWeather.condDescr}}</div>
     <div class="humidity" [ngClass]="display">Humidity {{curWeather.humidity}} | Pressure {{curWeather.pressure}} hpa | Wind Speed {{curWeather.windSpeed}} m/s</div>
   </div>

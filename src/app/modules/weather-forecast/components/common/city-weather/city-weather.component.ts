@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IWeather } from '../../../models/weather-forecast.interfaces';
+import { ModuleStateService } from '../../../services/module-state.service';
 
 @Component({
   selector: 'app-city-weather',
@@ -8,7 +9,7 @@ import { IWeather } from '../../../models/weather-forecast.interfaces';
 })
 export class CityWeatherComponent implements OnInit {
 
-  constructor() { }
+  constructor () {}
 
   @Input () curWeather: IWeather; 
   @Input() starred:string;

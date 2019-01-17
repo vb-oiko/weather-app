@@ -1,8 +1,13 @@
 <div class="main-wrap">
   <div class="header-wrap">
-    <h1><a [routerLink]="['']">Another Weather App</a></h1>
-    <app-city-input></app-city-input>
-    <a [routerLink]="['./starred']">Profile</a> 
+    <div class="menu">
+      <h1><a [routerLink]="['']">Another Weather App</a></h1>
+      <ul *ngIf="auth.user | async">
+        <li><a [routerLink]="['./starred']" >My Cities</a></li>
+        <li (click)="auth.signOut()">SignOut ({{auth.curUser.email}})</li>
+      </ul> 
+    </div>
+    <app-city-input  *ngIf="auth.user | async"></app-city-input>
   </div>
 
   <router-outlet></router-outlet>

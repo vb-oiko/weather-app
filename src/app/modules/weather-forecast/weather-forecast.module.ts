@@ -13,6 +13,7 @@ import { StarredCitiesComponent } from './components/starred-cities/starred-citi
 import { CityViewComponent } from './components/city-view/city-view.component';
 import { RouterModule } from '@angular/router';
 import { GeoLocatorComponent } from './components/geo-locator/geo-locator.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { GeoLocatorComponent } from './components/geo-locator/geo-locator.compon
     WeatherIconComponent, 
     StarredCitiesComponent, 
     CityViewComponent, 
-    GeoLocatorComponent,
+    GeoLocatorComponent, LoginComponent,
   ],
 
   imports: [

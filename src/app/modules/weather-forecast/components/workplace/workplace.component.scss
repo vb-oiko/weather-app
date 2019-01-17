@@ -12,14 +12,41 @@ a {
         display: flex;
         justify-content: space-between;
         margin: 1rem 0;
+        flex-wrap: wrap;
 
-        h1 {
-            flex-basis: 50%;
+        .menu {
+            flex-basis: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            h1 {
+                justify-self: flex-start;
+                margin-block-end: 0;
+            }
+
+            ul {
+                list-style: none;
+
+                li {
+                    display: inline;
+                    margin-left: 1rem;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    a {
+                        justify-self: flex-end;
+                    }
+                }
+            }
         }
 
+
         app-city-input {
-            flex-basis: 45%;
+            flex-basis: 40%;
             align-self: flex-end;
+            margin-left: auto;
         }
     }
 }

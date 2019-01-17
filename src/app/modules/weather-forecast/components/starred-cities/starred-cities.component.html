@@ -1,11 +1,13 @@
 <div *ngIf="weather">
-  <div *ngFor="let wth of weather" (click)="cityClicked(wth.cityAndCountry)">
+  <div *ngFor="let wth of weather" (click)="cityClicked(wth)">
       <app-city-weather 
-        [curWeather]="wth" 
-        [starred]="true" 
+        [curWeather]="wth"
+        [starred] = "'true'"
         [display]="'short'"
         (starClicked)="cityStarClick($event)">
     </app-city-weather>
     <div class="spacer"></div>
   </div>
-</div>
+
+  
+  <!-- (click)="cityClicked(wth.cityAndCountry)" -->

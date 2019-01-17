@@ -7,3 +7,8 @@ export interface IWeather {
     humidity: number;
     windSpeed: number;
 }
+
+export interface User {
+    uid: string;
+    email: string;
+  }

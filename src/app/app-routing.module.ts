@@ -4,6 +4,7 @@ import { WorkplaceComponent } from './modules/weather-forecast/components/workpl
 import { CityViewComponent } from './modules/weather-forecast/components/city-view/city-view.component';
 import { StarredCitiesComponent } from './modules/weather-forecast/components/starred-cities/starred-cities.component';
 import { GeoLocatorComponent } from './modules/weather-forecast/components/geo-locator/geo-locator.component';
+import { LoginComponent } from './modules/weather-forecast/components/login/login.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -11,7 +12,9 @@ const routes: Routes = [
     path: 'home',
     component: WorkplaceComponent,
     children : [
-      { path: '', redirectTo: 'city', pathMatch: 'full'},
+      { path: '', redirectTo: 'login', pathMatch: 'full'},
+      { path: 'login', component: LoginComponent},
+      // { path: '', redirectTo: 'city', pathMatch: 'full'},
       { path: 'city/:name', component: CityViewComponent},
       { path: 'city', component: GeoLocatorComponent},
       { path: 'starred', component: StarredCitiesComponent},

@@ -9,8 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { AngularFireModule } from '@angular/fire'
 import { environment } from 'src/environments/environment';
-import { ModuleStateService } from './modules/weather-forecast/services/module-state.service'
-import { WeatherForecastService } from './modules/weather-forecast/services/weather-forecast.service'
+import { ModuleStateService } from './modules/weather-forecast/services/module-state.service';
+import { WeatherForecastService } from './modules/weather-forecast/services/weather-forecast.service';
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { WeatherForecastService } from './modules/weather-forecast/services/weat
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
   providers: [
     ModuleStateService,

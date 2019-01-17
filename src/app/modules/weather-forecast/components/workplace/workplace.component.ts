@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModuleStateService } from '../../services/module-state.service';
 
 @Component({
   selector: 'app-workplace',
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkplaceComponent implements OnInit {
 
-  constructor () {}
+  constructor (
+    public auth: ModuleStateService,
+  ) {}
 
   ngOnInit() {
   }
