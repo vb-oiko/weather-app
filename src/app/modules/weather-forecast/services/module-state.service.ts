@@ -43,6 +43,8 @@ export class ModuleStateService {
         });
 
         this.curUser = user;
+      } else {
+        this.curUser = undefined;
       };
     })
 

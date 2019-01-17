@@ -5,6 +5,7 @@ import { CityViewComponent } from './modules/weather-forecast/components/city-vi
 import { StarredCitiesComponent } from './modules/weather-forecast/components/starred-cities/starred-cities.component';
 import { GeoLocatorComponent } from './modules/weather-forecast/components/geo-locator/geo-locator.component';
 import { LoginComponent } from './modules/weather-forecast/components/login/login.component';
+import { WeatherGuardGuard } from './modules/weather-forecast/guards/weather-guard.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -14,10 +15,10 @@ const routes: Routes = [
     children : [
       { path: '', redirectTo: 'login', pathMatch: 'full'},
       { path: 'login', component: LoginComponent},
-      // { path: '', redirectTo: 'city', pathMatch: 'full'},
-      { path: 'city/:name', component: CityViewComponent},
-      { path: 'city', component: GeoLocatorComponent},
-      { path: 'starred', component: StarredCitiesComponent},
+      { path: 'city/:name', component: CityViewComponent, canActivate: [WeatherGuardGuard]},
+      { path: 'city', component: GeoLocatorComponent, canActivate: [WeatherGuardGuard]},
+      { path: 'starred', component: StarredCitiesComponent, canActivate: [WeatherGuardGuard]},
+      { path: '*', redirectTo: 'city', pathMatch: 'full'},
     ],
   }
 ];
