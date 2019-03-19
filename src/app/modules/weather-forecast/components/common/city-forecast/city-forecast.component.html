@@ -1,7 +1,7 @@
 <div class="forecast-wrap">
   <ng-container *ngFor="let fore of forecast">
     <mat-card class="forecast-card" *ngIf="!(fore.date % 86400000 - 43200000)">
-      <div class="day">{{fore.date | date :'EEE H:mm'}}</div>
+      <div class="day">{{fore.date | date :'EEE'}}</div>
       <div class="icon">
         <app-weather-icon [descr]="fore.condDescr"></app-weather-icon>
       </div>
