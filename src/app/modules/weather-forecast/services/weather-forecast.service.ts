@@ -12,7 +12,7 @@ import { map } from "rxjs/operators";
 
 export class WeatherForecastService {
   
-  private _WEATHER_APIURL: string = 'http://api.openweathermap.org/data/2.5/';
+  private _WEATHER_APIURL: string = 'https://api.openweathermap.org/data/2.5/';
   private _WEATHER_APIKEY: string = '852632e4d0e2e9f87c1d590ec53e07bc';
   private _WEATHER_UNITS = 'metric';
 
